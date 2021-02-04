@@ -1,0 +1,63 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+.turkey-flag {
+  --height: 700px; 
+  --width: calc(var(--height) * 1.5);
+  --color: #E30A17;
+  --moon-r: calc(var(--height) / 2); /* ayın dış dairesinin çapı */
+  --moon-inner-r: calc(var(--height) * 0.4); /* iç dairenin çapı */
+  --moon-inner-position: calc(var(--moon-r) + (var(--height) / 16));
+  --star-r: calc(var(--height) / 4);
+  --star-position: calc((var(--moon-inner-position) - (var(--moon-inner-r) / 2)) + (var(--height) / 3));
+
+  width: var(--width);
+  height: var(--height);
+  background-color: var(--color);
+  position: relative;
+ 
+}
+
+/* dış daire */
+.turkey-flag:before{
+  content: '';
+  width: var(--moon-r);
+  height: var(--moon-r);
+  border-radius: 50%; /* yuvarlak */
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: var(--moon-r);
+  transform: translate(-50%, -50%);
+}
+
+/* iç daire */
+.turkey-flag:after{
+  content: '';
+  width: var(--moon-inner-r);
+  height: var(--moon-inner-r);
+  background-color: var(--color);
+  position: absolute;
+  border-radius: 50%;
+  left: var(--moon-inner-position);
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.star {
+  width: var(--star-r);
+  height: var(--star-r);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  background: #fff;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: var(--star-position);
+  transform: translateY(-50%) rotate(-18deg);
+}
